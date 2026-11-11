@@ -2780,9 +2780,9 @@ strong {
     z-index: 1;
     transform: translateZ(0);
   }
-  .petal {
-    width: calc(var(--size) * 1.7);
-    height: calc(var(--size) * 2.15);
+  .petal,
+  .heart-bit {
+    opacity: 0.8;
   }
   .arch-outline {
     inset: 8px;
@@ -2819,6 +2819,20 @@ strong {
   }
   body {
     background-color: #f3f6f0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3,
+  p,
+  label,
+  legend,
+  .choice,
+  .btn,
+  .lead,
+  .section-lead {
+    overflow-wrap: break-word;
   }
   .topbar,
   .topbar.is-scrolled {
@@ -2861,22 +2875,49 @@ strong {
     gap: 0.85rem;
   }
   .hero-names {
-    font-size: clamp(2.05rem, 9.2vw, 2.55rem);
+    font-size: clamp(1.8rem, 8.2vw, 2.25rem);
   }
   .hero-tagline {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
+  }
+  .hero-date p span {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+  .lead {
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+  .section-lead,
+  .event-desc,
+  .dress-note,
+  .dress-lead,
+  .invitation-copy > p,
+  .rsvp-copy .lead,
+  .countdown-date,
+  .footer-note {
+    font-size: 0.92rem;
   }
   .section-title {
     margin-bottom: 1.15rem;
+    max-width: 100%;
+    padding-inline: 0;
   }
   .section-title h2 {
-    font-size: clamp(1.75rem, 7.4vw, 2.15rem);
+    font-size: clamp(1.45rem, 6.6vw, 1.8rem);
+    line-height: 1.15;
+  }
+  .section-title h2 em {
+    font-size: 1.05em;
   }
   .invitation-copy,
   .rsvp-copy,
-  .section-title,
   .countdown-date {
-    padding-inline: 0.85rem;
+    padding-inline: 0;
   }
   .hero-actions {
     flex-direction: column;
@@ -2884,8 +2925,11 @@ strong {
     margin-top: 1.1rem;
   }
   .btn {
-    padding: 0.72rem 0.9rem;
-    letter-spacing: 0.08em;
+    padding: 0.72rem 0.85rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+    text-align: center;
   }
   .hero-actions .btn,
   .calendar-actions .btn {
@@ -3099,12 +3143,61 @@ strong {
   .wish-form h3 {
     font-size: 1.5rem;
   }
+  .field label,
+  .field legend {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+  }
+  .field input,
+  .field textarea,
+  .choice {
+    font-size: 16px;
+    max-width: 100%;
+  }
   .field input,
   .field textarea {
-    padding: 0.72rem 0.85rem;
+    padding: 0.68rem 0.75rem;
+    line-height: 1.35;
+  }
+  .field textarea {
+    min-height: 88px;
+  }
+  .input-wrap svg {
+    left: 12px;
   }
   .input-wrap input {
-    padding-left: 2.55rem;
+    padding-left: 2.35rem;
+  }
+  .choice {
+    justify-content: flex-start;
+    gap: 0.45rem;
+    padding: 0.72rem 0.75rem;
+    line-height: 1.3;
+    text-align: left;
+  }
+  .choice svg,
+  .choice-dot {
+    flex: none;
+  }
+  .form-feedback,
+  .field-error {
+    font-size: 0.84rem;
+    line-height: 1.4;
+  }
+  .calendar-caption,
+  .footer-date,
+  .gallery-counter,
+  .wish-count {
+    letter-spacing: 0.1em;
+    font-size: 0.64rem;
+  }
+  .event-venue,
+  .event-venue small {
+    font-size: 0.88rem;
+  }
+  .timeline-end-text {
+    font-size: 1rem;
   }
   .verse {
     font-size: 1.12rem;

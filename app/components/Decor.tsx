@@ -5,33 +5,33 @@ import { FlowerIcon, HeartIcon, QuillIcon, StarIcon } from "./Icons";
 export function Ambient() {
   return (
     <div className="ambient" aria-hidden="true">
-      {Array.from({ length: 18 }, (_, i) => (
+      {Array.from({ length: 6 }, (_, i) => (
         <span
           key={`p${i}`}
           className={`petal petal-${i % 3}`}
           style={{
-            left: `${(i * 37 + 4) % 100}%`,
-            animationDelay: `${-(i * 1.7).toFixed(1)}s`,
-            animationDuration: `${12 + (i % 5) * 2.4}s`,
-            ["--drift" as string]: `${(i % 2 ? 1 : -1) * (36 + (i % 4) * 22)}px`,
-            ["--size" as string]: `${11 + (i % 4) * 4}px`,
+            left: `${(i * 37 + 8) % 100}%`,
+            animationDelay: `${-(i * 2.4).toFixed(1)}s`,
+            animationDuration: `${16 + (i % 4) * 3}s`,
+            ["--drift" as string]: `${(i % 2 ? 1 : -1) * (24 + (i % 3) * 14)}px`,
+            ["--size" as string]: `${8 + (i % 3) * 2}px`,
           }}
         />
       ))}
-      {Array.from({ length: 8 }, (_, i) => (
+      {Array.from({ length: 3 }, (_, i) => (
         <span
           key={`h${i}`}
           className="heart-bit"
           style={{
-            left: `${(i * 23 + 8) % 96}%`,
-            animationDelay: `${-(i * 2.1).toFixed(1)}s`,
-            animationDuration: `${14 + (i % 4) * 2}s`,
-            ["--drift" as string]: `${(i % 2 ? 1 : -1) * (28 + i * 8)}px`,
-            ["--size" as string]: `${8 + (i % 3) * 3}px`,
+            left: `${(i * 31 + 12) % 90}%`,
+            animationDelay: `${-(i * 3.2).toFixed(1)}s`,
+            animationDuration: `${18 + i * 2}s`,
+            ["--drift" as string]: `${(i % 2 ? 1 : -1) * 22}px`,
+            ["--size" as string]: `${7 + i}px`,
           }}
         />
       ))}
-      {Array.from({ length: 18 }, (_, i) => (
+      {Array.from({ length: 6 }, (_, i) => (
         <span
           key={`s${i}`}
           className="sparkle"
