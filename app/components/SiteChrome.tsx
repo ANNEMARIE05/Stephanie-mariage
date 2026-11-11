@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { prefersReducedMotion } from "@/app/lib/motion";
 import { monogram } from "@/app/lib/wedding";
 import { ArrowIcon, EnvelopeIcon } from "./Icons";
 
@@ -19,7 +20,7 @@ export default function SiteChrome() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = prefersReducedMotion();
 
     // Apparition des éléments au scroll.
     const small = window.matchMedia("(max-width: 900px)").matches;

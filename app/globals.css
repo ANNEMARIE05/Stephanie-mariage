@@ -3775,8 +3775,9 @@ html.intro-open .hero-visual * {
   }
 }
 
-/* ---------- Mouvement réduit ---------- */
-@media (prefers-reduced-motion: reduce) {
+/* Mouvement réduit seulement hors téléphone.
+   Samsung annonce souvent prefers-reduced-motion dès que « Supprimer les animations » est actif. */
+@media (prefers-reduced-motion: reduce) and (pointer: fine) and (hover: hover) and (min-width: 901px) {
   html {
     scroll-behavior: auto;
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { prefersReducedMotion } from "@/app/lib/motion";
 import { monogram, wedding } from "@/app/lib/wedding";
 import { FloralBranch } from "./Icons";
 
@@ -9,10 +10,6 @@ type Phase = "loading" | "sealed" | "opening" | "exit" | "done";
 const LOAD_MS = 2200;
 const REVEAL_MS = 2500;
 const EXIT_MS = 900;
-
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 
 /** Remonte tout de suite, même si le navigateur voulait un défilement doux ou une ancre. */
 function jumpToTop(clearHash = false) {

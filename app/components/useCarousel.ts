@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { prefersReducedMotion } from "@/app/lib/motion";
 
 /** Logique commune aux carrousels : navigation, défilement auto, swipe tactile, clavier. */
 export function useCarousel(count: number, { interval = 5500, autoplay = true } = {}) {
@@ -11,11 +12,16 @@ export function useCarousel(count: number, { interval = 5500, autoplay = true } 
   const deltaX = useRef(0);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(mq.matches);
+    const queries = [
+      window.matchMedia("(prefers-reduced-motion: reduce)"),
+      window.matchMedia("(pointer: coarse)"),
+      window.matchMedia("(hover: none)"),
+      window.matchMedia("(max-width: 900px)"),
+    ];
+    const sync = () => setReduced(prefersReducedMotion());
     sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    queries.forEach((mq) => mq.addEventListener("change", sync));
+    return () => queries.forEach((mq) => mq.removeEventListener("change", sync));
   }, []);
 
   const goTo = useCallback((i: number) => setIndex(count ? ((i % count) + count) % count : 0), [count]);
