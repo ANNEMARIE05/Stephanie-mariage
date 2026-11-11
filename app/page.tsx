@@ -109,7 +109,7 @@ export default function Home() {
         {/* ───────────── INVITATION ───────────── */}
         <section className="invitation section" id="invitation">
           <div className="container invitation-grid">
-            <div className="invitation-photo" data-reveal>
+            <div className="invitation-photo" data-reveal="left">
               <div className="soft-frame">
                 <Image src={photos.intro} alt="Les mariés, complices" fill sizes="(max-width: 900px) 90vw, 40vw" />
               </div>
@@ -118,7 +118,7 @@ export default function Home() {
               </span>
               <span className="sticker st-leaf" aria-hidden="true"><LeafIcon size={28} /></span>
             </div>
-            <div className="invitation-copy" data-reveal>
+            <div className="invitation-copy" data-reveal="right">
               <SectionTitle eyebrow="À nos familles & amis" title="Une invitation" accent="du cœur" align="left" icon="heart" />
               <p className="lead">
                 C’est avec une immense joie que {hasPartner ? "nous vous invitons" : "Stéphanie vous invite"} à partager
@@ -161,7 +161,7 @@ export default function Home() {
             </div>
 
             <div className="programme-grid">
-              <div className="calendar-card lux-card" data-reveal aria-label="Calendrier de décembre 2026">
+              <div className="calendar-card lux-card" data-reveal="zoom" aria-label="Calendrier de décembre 2026">
                 <span className="card-corner tl" aria-hidden="true" />
                 <span className="card-corner br" aria-hidden="true" />
                 <div className="calendar-head">
@@ -262,7 +262,7 @@ export default function Home() {
             <p className="dress-lead" data-reveal>
               {wedding.dressCode.lead}
             </p>
-            <ul className="dress-swatches" data-reveal>
+            <ul className="dress-swatches" data-reveal="zoom">
               {wedding.dressCode.colors.map((color) => (
                 <li key={color.name}>
                   <span className="dress-swatch" style={{ background: color.hex }} role="img" aria-label={color.name} />

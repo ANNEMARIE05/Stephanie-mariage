@@ -46,9 +46,13 @@ export function useCarousel(count: number, { interval = 5500, autoplay = true } 
     onPointerCancel: () => {
       startX.current = null;
     },
-    onMouseEnter: () => setPaused(true),
+    onMouseEnter: () => {
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) setPaused(true);
+    },
     onMouseLeave: () => setPaused(false),
-    onFocus: () => setPaused(true),
+    onFocus: () => {
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) setPaused(true);
+    },
     onBlur: () => setPaused(false),
     onKeyDown: (e: React.KeyboardEvent) => {
       if (e.key === "ArrowRight") next();

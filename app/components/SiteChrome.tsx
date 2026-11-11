@@ -22,7 +22,7 @@ export default function SiteChrome() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Apparition des éléments au scroll.
-    const revealEls = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const small = window.matchMedia("(max-width: 900px)").matches;
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -31,9 +31,37 @@ export default function SiteChrome() {
             io.unobserve(entry.target);
           }
         }),
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      small
+        ? { threshold: 0.02, rootMargin: "0px 0px 18% 0px" }
+        : { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
-    revealEls.forEach((el) => (reduce ? el.classList.add("is-visible") : io.observe(el)));
+    const scan = () => {
+      if (!reduce && document.documentElement.classList.contains("intro-open")) return;
+      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-visible)").forEach((el) => {
+        if (reduce) el.classList.add("is-visible");
+        else io.observe(el);
+      });
+    };
+    const arm = () => {
+      if (!reduce) {
+        document.querySelectorAll<HTMLElement>("[data-reveal].is-visible").forEach((el) => el.classList.remove("is-visible"));
+      }
+      scan();
+    };
+    let introWatch: MutationObserver | undefined;
+    if (!reduce && document.documentElement.classList.contains("intro-open")) {
+      introWatch = new MutationObserver(() => {
+        if (!document.documentElement.classList.contains("intro-open")) {
+          introWatch?.disconnect();
+          arm();
+        }
+      });
+      introWatch.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    } else {
+      scan();
+    }
+    const late = new MutationObserver(scan);
+    late.observe(document.body, { childList: true, subtree: true });
 
     // Parallaxe légère (rAF, transform uniquement).
     const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-speed]"));
@@ -64,6 +92,8 @@ export default function SiteChrome() {
     window.addEventListener("resize", onScroll);
     return () => {
       io.disconnect();
+      introWatch?.disconnect();
+      late.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
